@@ -1,0 +1,17 @@
+How to install
+--------------
+
+pedalog-tool requires libpedalog and its headers to be installed.
+It also requires cmake to be installed.
+
+To install:
+
+1) Go into pedalog-tool directory
+2) cmake .
+
+As root:
+3) make install
+
+This has been tested on Linux and Windows (using MinGW).
+
+Any problems please report on GitHub: https://github.com/greenlynx/pedalog-tool/issues
