@@ -46,12 +46,15 @@ int main()
 		return display_error(PEDALOG_ERROR_NO_DEVICE_FOUND);
 	}
 
+    while (1) {
 	int result = pedalog_read_data(&devices[0], &data);
 
 	if (result == PEDALOG_OK) {
-		printf("volt: %f, iOut: %f, pO: %f, eO: %f, pMax: %f, pAve: %f, time: %ld\n", data.volt, data.iOut, data.pO, data.eO, data.pMax, data.pAve, data.time);
-		return 0;	
+		printf("voltage: %f, current: %f, power: %f, energy: %f, max_power: %f, avg_power: %f, time: %ld\n",
+            data.voltage, data.current, data.power, data.energy, data.max_power, data.avg_power, data.time);
+	//	return 0;	
 	} else {
 		return display_error(result);
 	}
+    }
 }
