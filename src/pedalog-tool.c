@@ -8,7 +8,7 @@
  * pedalog-tool is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
- *( at your option) any later version.
+ * (at your option) any later version.
  *
  * pedalog-tool is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -31,30 +31,28 @@ int display_error(int error)
     pedalog_get_error_message(error, message);
 
     printf("%s\n", message);
-	return error;
+    return error;
 }
 
 int main()
 {
-	pedalog_init();
+    pedalog_init();
 
-	pedalog_data data;
-	pedalog_device devices[PEDALOG_MAX_DEVICES];
+    pedalog_data data;
+    pedalog_device devices[PEDALOG_MAX_DEVICES];
 
-	int device_count = pedalog_find_devices(devices);
-	if (device_count < 1) {
-		return display_error(PEDALOG_ERROR_NO_DEVICE_FOUND);
-	}
+    int device_count = pedalog_find_devices(devices);
+    if (device_count < 1) {
+        return display_error(PEDALOG_ERROR_NO_DEVICE_FOUND);
+    }
 
-    while (1) {
-	int result = pedalog_read_data(&devices[0], &data);
+    int result = pedalog_read_data(&devices[0], &data);
 
-	if (result == PEDALOG_OK) {
-		printf("voltage: %f, current: %f, power: %f, energy: %f, max_power: %f, avg_power: %f, time: %ld\n",
+    if (result == PEDALOG_OK) {
+        printf("voltage: %f, current: %f, power: %f, energy: %f, max_power: %f, avg_power: %f, time: %ld\n",
             data.voltage, data.current, data.power, data.energy, data.max_power, data.avg_power, data.time);
-	//	return 0;	
-	} else {
-		return display_error(result);
-	}
+        return 0;	
+    } else {
+        return display_error(result);
     }
 }
