@@ -33,7 +33,7 @@ static char doc[] = "Pedalog Tool - a simple program for reading data from Pedal
 
 /* The options we understand. */
 static struct argp_option options[] = {
-    {"comma",  'c', 0,      0,  "Produce comma-separated output" },
+    {"concise",  'c', 0,      0,  "Produce concise comma-separated output" },
     {"serial",   's', "SERIAL", 0,
         "Read data from a Pedalog device with a specific serial number" },
     { 0 }
@@ -45,7 +45,7 @@ static char args_doc[] = "";
 /* Used by main to communicate with parse_opt. */
 struct arguments
 {
-    int comma;
+    int concise;
     int serial;
 };
 
@@ -59,7 +59,7 @@ static error_t parse_opt (int key, char *arg, struct argp_state *state)
     switch (key)
     {
         case 'c':
-            arguments->comma = 1;
+            arguments->concise = 1;
             break;
         case 's':
             arguments->serial = atoi(arg);
@@ -93,7 +93,7 @@ int main(int argc, char **argv)
     struct arguments arguments;
 
     /* Default values. */
-    arguments.comma = 0;
+    arguments.concise = 0;
     arguments.serial = 0;
 
     /* Parse our arguments; every option seen by parse_opt will
@@ -113,7 +113,7 @@ int main(int argc, char **argv)
             int result = pedalog_read_data(&devices[i], &data);
 
             if (result == PEDALOG_OK) {
-                if (arguments.comma) {
+                if (arguments.concise) {
                     printf("%d,%f,%f,%f,%f,%f,%f,%d\n",
                         devices[i].serial, data.voltage, data.current, data.power, data.energy, data.max_power, data.avg_power, data.time);
                 } else {
