@@ -1,0 +1,10 @@
+Package: pedalog-tool
+Version: 0.1.0
+Section: devel
+Priority: optional
+Architecture: amd64
+Depends: libpedalog (>=0.1)
+Installed-Size: 11
+Maintainer: dan@powwow-pedal-power.org.uk
+Description: Command-line tool to read data from Pedalog devices
+
