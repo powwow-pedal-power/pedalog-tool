@@ -2,7 +2,7 @@ Source: pedalog-tool
 Section: electronics
 Priority: extra
 Maintainer: Dan Haughey <dan@powwow-pedal-power.org.uk>
-Build-Depends: debhelper (>= 8.0.0), cmake, libpedalog-dev (>= 0.1)
+Build-Depends: debhelper (>= 7.0.0), cmake, libpedalog-dev (>= 0.1)
 Standards-Version: 3.9.2
 Homepage: https://github.com/powwow-pedal-power/pedalog-tool
 
