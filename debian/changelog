@@ -1,11 +1,17 @@
-pedalog-tool (0.1-2) jaunty; urgency=low
+pedalog-tool (0.2-1) maverick; urgency=low
+
+  * Bumped to v0.2
+
+ -- Dan Haughey <dan@powwow-pedal-power.org.uk>  Wed, 20 Jul 2011 13:41:52 +0100
+
+pedalog-tool (0.1-2) maverick; urgency=low
 
   * Changed debuild dependency version to allow building on jaunty
 
- -- Dan Haughey <dan@powwow-pedal-power.org.uk>  Wed, 21 Jul 2011 12:10:12 +0100
+ -- Dan Haughey <dan@powwow-pedal-power.org.uk>  Wed, 20 Jul 2011 12:10:12 +0100
 
-pedalog-tool (0.1-1) jaunty; urgency=low
+pedalog-tool (0.1-1) maverick; urgency=low
 
   * Initial release
 
- -- Dan Haughey <dan@powwow-pedal-power.org.uk>  Tue, 20 Jul 2011 10:41:38 +0100
+ -- Dan Haughey <dan@powwow-pedal-power.org.uk>  Wed, 20 Jul 2011 10:41:38 +0100
