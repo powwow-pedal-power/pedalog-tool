@@ -6,3 +6,9 @@ pedalog-tool
 Makefile
 /_CPack_Packages
 *.deb
+/debian/files
+*.log
+*.substvars
+*.debhelper
+/debian/pedalog-tool
+/debian/tmp
