@@ -33,9 +33,12 @@ static char doc[] = "Pedalog Tool - a simple program for reading data from Pedal
 
 /* The options we understand. */
 static struct argp_option options[] = {
-    {"concise",  'c', 0,      0,  "Produce concise comma-separated output" },
-    {"serial",   's', "SERIAL", 0,
+    {"concise", 'c', 0, 0,
+        "Produce concise comma-separated output" },
+    {"serial",  's', "SERIAL", 0,
         "Read data from a Pedalog device with a specific serial number" },
+    {"loop",    'l', 0, 0,
+        "Causes the program to keep reading and printing values in an infinite loop, for debugging purposes" },
     { 0 }
 };
 
@@ -47,6 +50,7 @@ struct arguments
 {
     int concise;
     int serial;
+    int loop;
 };
 
 /* Parse a single option. */
@@ -69,6 +73,9 @@ static error_t parse_opt (int key, char *arg, struct argp_state *state)
             }
 
             break;
+        case 'l':
+            arguments->loop = 1;
+            break;
 
         default:
             return ARGP_ERR_UNKNOWN;
@@ -88,20 +95,8 @@ int display_error(int error)
     return error;
 }
 
-int main(int argc, char **argv)
+int display_data(struct arguments arguments)
 {
-    struct arguments arguments;
-
-    /* Default values. */
-    arguments.concise = 0;
-    arguments.serial = 0;
-
-    /* Parse our arguments; every option seen by parse_opt will
-       be reflected in arguments. */
-    argp_parse (&argp, argc, argv, 0, 0, &arguments);
-
-    pedalog_init();
-
     pedalog_data data;
     pedalog_device devices[PEDALOG_MAX_DEVICES];
 
@@ -128,4 +123,32 @@ int main(int argc, char **argv)
     }
 
     return display_error(PEDALOG_ERROR_NO_DEVICE_FOUND);
+}
+
+int main(int argc, char **argv)
+{
+    struct arguments arguments;
+
+    /* Default values. */
+    arguments.concise = 0;
+    arguments.serial = 0;
+    arguments.loop = 0;
+
+    /* Parse our arguments; every option seen by parse_opt will
+       be reflected in arguments. */
+    argp_parse (&argp, argc, argv, 0, 0, &arguments);
+
+    pedalog_init();
+
+    if (arguments.loop == 1)
+    {
+        while (1==1)
+        {
+            display_data(arguments);
+        }
+    }
+    else
+    {
+        return display_data(arguments);
+    }
 }
