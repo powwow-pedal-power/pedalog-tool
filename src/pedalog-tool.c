@@ -109,10 +109,10 @@ int display_data(struct arguments arguments)
 
             if (result == PEDALOG_OK) {
                 if (arguments.concise) {
-                    printf("%d,%f,%f,%f,%f,%f,%f,%d\n",
+                    printf("%d,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%d\n",
                         devices[i].serial, data.voltage, data.current, data.power, data.energy, data.max_power, data.avg_power, data.time);
                 } else {
-                    printf("Serial: %d, voltage: %f, current: %f, power: %f, energy: %f, max_power: %f, avg_power: %f, time: %d\n",
+                    printf("Serial: %d, voltage: %.1f, current: %.1f, power: %.1f, energy: %.1f, max_power: %.1f, avg_power: %.1f, time: %d\n",
                         devices[i].serial, data.voltage, data.current, data.power, data.energy, data.max_power, data.avg_power, data.time);
                 }
                 return 0;	
