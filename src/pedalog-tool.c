@@ -86,6 +86,11 @@ static error_t parse_opt (int key, char *arg, struct argp_state *state)
 /* Our argp parser. */
 static struct argp argp = { options, parse_opt, args_doc, doc };
 
+static pedalog_data data;
+static pedalog_device devices[PEDALOG_MAX_DEVICES];
+
+static int device_count;
+
 int display_error(int error)
 {
     char message[PEDALOG_MAX_ERROR_MESSAGE];
@@ -97,11 +102,6 @@ int display_error(int error)
 
 int display_data(struct arguments arguments)
 {
-    pedalog_data data;
-    pedalog_device devices[PEDALOG_MAX_DEVICES];
-
-    int device_count = pedalog_find_devices(devices);
-
     int i;
     for (i = 0; i < device_count; ++i) {
         if (arguments.serial == 0 || arguments.serial == devices[i].serial) {
@@ -109,10 +109,10 @@ int display_data(struct arguments arguments)
 
             if (result == PEDALOG_OK) {
                 if (arguments.concise) {
-                    printf("%d,%f,%f,%f,%f,%f,%f,%d\n",
+                    printf("%d,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%d\n",
                         devices[i].serial, data.voltage, data.current, data.power, data.energy, data.max_power, data.avg_power, data.time);
                 } else {
-                    printf("Serial: %d, voltage: %f, current: %f, power: %f, energy: %f, max_power: %f, avg_power: %f, time: %d\n",
+                    printf("Serial: %d, voltage: %.1f, current: %.1f, power: %.1f, energy: %.1f, max_power: %.1f, avg_power: %.1f, time: %d\n",
                         devices[i].serial, data.voltage, data.current, data.power, data.energy, data.max_power, data.avg_power, data.time);
                 }
                 return 0;	
@@ -139,6 +139,8 @@ int main(int argc, char **argv)
     argp_parse (&argp, argc, argv, 0, 0, &arguments);
 
     pedalog_init();
+
+    device_count = pedalog_find_devices(devices);
 
     if (arguments.loop == 1)
     {
