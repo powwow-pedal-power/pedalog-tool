@@ -26,7 +26,7 @@
 #include <pedalog.h>
 #include <argp.h>
 
-const char *argp_program_version = "pedalog-tool 0.1";
+const char *argp_program_version = "pedalog-tool 0.4";
 const char *argp_program_bug_address = "<dan@powwow-pedal-power.org.uk>";
 
 static char doc[] = "Pedalog Tool - a simple program for reading data from Pedalog devices";
