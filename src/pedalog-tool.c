@@ -20,6 +20,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <sys/types.h>
 #include <string.h>
 #include <unistd.h>
@@ -109,10 +110,10 @@ int display_data(struct arguments arguments)
 
             if (result == PEDALOG_OK) {
                 if (arguments.concise) {
-                    printf("%d,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%d\n",
+                    printf("%d,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%ld\n",
                         devices[i].serial, data.voltage, data.current, data.power, data.energy, data.max_power, data.avg_power, data.time);
                 } else {
-                    printf("Serial: %d, voltage: %.1f, current: %.1f, power: %.1f, energy: %.1f, max_power: %.1f, avg_power: %.1f, time: %d\n",
+                    printf("Serial: %d, voltage: %.1f, current: %.1f, power: %.1f, energy: %.1f, max_power: %.1f, avg_power: %.1f, time: %ld\n",
                         devices[i].serial, data.voltage, data.current, data.power, data.energy, data.max_power, data.avg_power, data.time);
                 }
                 return 0;	
