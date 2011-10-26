@@ -104,9 +104,11 @@ int display_error(int error)
 int display_data(struct arguments arguments)
 {
     int i;
+    int result;
+
     for (i = 0; i < device_count; ++i) {
         if (arguments.serial == 0 || arguments.serial == devices[i].serial) {
-            int result = pedalog_read_data(&devices[i], &data);
+            result = pedalog_read_data(&devices[i], &data);
 
             if (result == PEDALOG_OK) {
                 if (arguments.concise) {
@@ -116,14 +118,13 @@ int display_data(struct arguments arguments)
                     printf("Serial: %d, voltage: %.1f, current: %.1f, power: %.1f, energy: %.1f, max_power: %.1f, avg_power: %.1f, time: %ld\n",
                         devices[i].serial, data.voltage, data.current, data.power, data.energy, data.max_power, data.avg_power, data.time);
                 }
-                return 0;	
             } else {
-                return display_error(result);
+                display_error(result); 
             }
         }
     }
 
-    return display_error(PEDALOG_ERROR_NO_DEVICE_FOUND);
+    return result;
 }
 
 int main(int argc, char **argv)

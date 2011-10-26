@@ -6,7 +6,7 @@ target_link_libraries(pedalog-tool pedalog)
 
 # The version number.
 set (PEDALOG_TOOL_VERSION_MAJOR 0)
-set (PEDALOG_TOOL_VERSION_MINOR 4)
+set (PEDALOG_TOOL_VERSION_MINOR 5)
 
 install (TARGETS pedalog-tool DESTINATION bin)
 
